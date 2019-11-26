@@ -17,12 +17,14 @@ public class ANDSiblings {
         String startString = console.readLine();
 
         //find siblings, passing empty list of indices
-        //ArrayList<Integer> indices = new ArrayList<Integer>();
-        //andSiblings.findSiblings(startString, indices);
+        ArrayList<Integer> indices = new ArrayList<Integer>();
+        andSiblings.findSiblings(startString, indices);
 
         //test buildstring
+        /*
         ArrayList<Integer> indices = new ArrayList<Integer>(Arrays.asList(1,0,2));
         andSiblings.findSiblings("abc", indices);
+        */
 
         ListIterator<String> iterator = siblings.listIterator();
         while(iterator.hasNext()) {
@@ -34,19 +36,36 @@ public class ANDSiblings {
     for each starting index, concatenate with each of remaining indices not already in string
     base case: all letters used - check not already in siblings before adding */
     private void findSiblings(String startString, ArrayList<Integer> indices) {
+        //NEED CASE FOR EMPTY STRINGS
+        //can we remove brackets in if statements?
+        
         //BASE CASE: if all letters have been used, build and return string
         if (indices.size() == startString.length()) {
+            System.out.println("match");
+            
             String siblingString = buildString(startString, indices);
             if (!(siblings.contains(siblingString))) {
                 siblings.add(siblingString);
             }
         }
         
-        /* TO COMPLETE: RECURSIVE CASE
-        for(int i = 0; i < startString.length; i++) {
+        //RECURSIVE CASE: call on rest of string with updated indices
+        //where should _indices be defined?
+        else {
+            for(int i = 0; i < startString.length(); i++) {
+                if(!(indices.contains(i))) {
+                    //create new list and add next index to it, making sure not to change original list
+                    ArrayList<Integer> _indices = new ArrayList<Integer>();
+                    for (Integer index : indices) {
+                        _indices.add(index);
+                    }
+                    _indices.add(i);
 
+                    //recursive call with new indices
+                    this.findSiblings(startString, _indices);
+                }
+            }
         }
-        */
     }
 
     private String buildString(String startString, ArrayList<Integer> indices) {
