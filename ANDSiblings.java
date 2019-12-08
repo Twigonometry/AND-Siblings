@@ -77,4 +77,21 @@ public class ANDSiblings {
 
         return siblingString;
     }
+
+    /**
+     * attempt to format the string, removing non-numeric characters
+     * if no numeric characters found, throw an exception
+     * @return formatted string
+     */
+    public static String formatString(String input) throws NumberFormatException {
+        //replace all non numeric characters with empty strings
+        String result = input.replaceAll("[^0-9]", "");
+
+        //check string is not empty
+        if(result.length() == 0) {
+            throw new NumberFormatException();
+        } else {
+            return result;
+        }
+    }
 }
