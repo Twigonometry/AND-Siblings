@@ -23,6 +23,10 @@ public class ANDSiblings {
         } catch (NumberFormatException e) {
             e.printStackTrace();
         }
+
+        String result = findSiblings(formattedString, "", "");
+
+        System.out.println(result.substring(0, result.length() - 1));
     }
     
     /**
