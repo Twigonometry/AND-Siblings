@@ -24,7 +24,7 @@ public class ANDSiblings {
             e.printStackTrace();
         }
     }
-    
+
     /**
      * recursive function that finds permutations of given string and concatenates them
      * @param input : string to recursively find siblings for
